@@ -1,25 +1,83 @@
 import 'package:flutter/material.dart';
 import 'base_button.dart';
 
+/// A primary action button with Material Design styling and various customization options.
+///
+/// This button is typically used for the primary action in a form or dialog.
+/// It supports loading states, icons, gradients, and can be easily customized
+/// to match your app's design system.
 class PrimaryButton extends StatelessWidget {
+  /// The button's label text.
   final String text;
+
+  /// Called when the button is tapped or otherwise activated.
   final VoidCallback onPressed;
+
+  /// Whether the button should expand to fill the available horizontal space.
+  /// Defaults to true.
   final bool isFullWidth;
+
+  /// Whether to show a loading indicator instead of the button text.
+  /// Defaults to false.
   final bool isLoading;
+
+  /// Whether the button is disabled.
+  /// When true, the button will be displayed in a disabled state and won't respond to input.
+  /// Defaults to false.
   final bool isDisabled;
+
+  /// The width of the button.
+  /// If null, the button will size itself to its contents.
   final double? width;
+
+  /// The height of the button.
+  /// Defaults to 48.0 logical pixels.
   final double? height;
+
+  /// The radius of the button's corners.
+  /// Defaults to 24.0 logical pixels (fully rounded corners for default height).
   final double borderRadius;
+
+  /// The padding around the button's child.
+  /// If null, uses default padding based on the button's size.
   final EdgeInsetsGeometry? padding;
+
+  /// The button's background color.
+  /// If null, defaults to the theme's primary color.
   final Color? backgroundColor;
+
+  /// The color of the button's text.
+  /// Defaults to white (Colors.white).
   final Color? textColor;
+
+  /// An optional icon to display before the button's text.
   final Widget? prefixIcon;
+
+  /// An optional icon to display after the button's text.
   final Widget? suffixIcon;
+
+  /// The elevation of the button's shadow.
+  /// Defaults to 0 (no elevation).
   final double? elevation;
+
+  /// The style for the button's text.
+  /// If non-null, it's merged with the default text style.
   final TextStyle? textStyle;
+
+  /// The minimum width of the button.
+  /// If both [minWidth] and [width] are provided, [width] takes precedence.
   final double? minWidth;
+
+  /// A gradient to use for the button's background.
+  /// If provided, overrides [backgroundColor].
   final Gradient? gradient;
 
+  /// Creates a new [PrimaryButton].
+  ///
+  /// The [text] and [onPressed] parameters are required.
+  ///
+  /// By default, the button has a height of 48.0 and fully rounded corners (borderRadius: 24.0).
+  /// The text color is white by default, and the background color defaults to the theme's primary color.
   const PrimaryButton({
     Key? key,
     required this.text,
@@ -44,6 +102,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    // Delegate the rendering to BaseButton with the appropriate properties
     return BaseButton(
       text: text,
       onPressed: onPressed,

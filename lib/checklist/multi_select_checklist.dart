@@ -1,28 +1,104 @@
 import 'package:flutter/material.dart';
 import 'base_checklist_item.dart';
 
+/// A customizable multi-select checklist widget that allows users to select multiple items.
+///
+/// This widget displays a list of checkboxes that can be toggled on and off. It supports
+/// features like select all, custom styling, and scrollable lists. The selected values
+/// are maintained in a list and can be accessed via the [onChanged] callback.
+///
+/// The generic type parameter [T] represents the type of the value that each checklist item holds.
 class MultiSelectChecklist<T> extends StatefulWidget {
+  /// The list of items to display in the checklist.
   final List<BaseChecklistItem<T>> items;
+
+  /// Called when the user selects or deselects an item.
+  ///
+  /// The list contains the values of all currently selected items.
   final ValueChanged<List<T>> onChanged;
+
+  /// The initial list of selected values.
+  /// If provided, the corresponding items will be pre-selected when the widget is first built.
   final List<T>? initialValues;
+
+  /// An optional widget to display above the checklist.
   final Widget? title;
+
+  /// Whether to show dividers between checklist items.
+  /// Defaults to false.
   final bool showDivider;
+
+  /// The color to use for the active checkbox and selected item text.
+  /// If null, defaults to the theme's primary color.
   final Color? activeColor;
+
+  /// The color to use for the check icon when the checkbox is checked.
+  /// If null, defaults to the theme's onPrimary color.
   final Color? checkColor;
+
+  /// The background color of the list tile.
+  /// If null, defaults to the theme's card color.
   final Color? tileColor;
+
+  /// The background color of the list tile when selected.
+  /// If null, defaults to primary color with 10% opacity.
   final Color? selectedTileColor;
+
+  /// Where to place the control in relation to the text.
+  /// Defaults to [ListTileControlAffinity.leading].
   final ListTileControlAffinity controlAffinity;
+
+  /// Whether the list tile is part of a vertically dense list.
+  /// If true, reduces the vertical padding of the list tile.
+  /// Defaults to false.
   final bool dense;
+
+  /// The padding around the list tile's contents.
+  /// If null, uses default padding based on the [dense] property.
   final EdgeInsetsGeometry? contentPadding;
+
+  /// Whether this list tile should be focused initially.
+  /// Defaults to false.
   final bool autofocus;
+
+  /// The shape of the list tile's [InkWell].
+  /// If null, defaults to a rectangle border with 4.0 radius.
   final ShapeBorder? shape;
+
+  /// Whether the list should be scrollable.
+  /// If true, wraps the list in a [ListView].
+  /// Defaults to false.
   final bool isScrollable;
+
+  /// How the scroll view should respond to user input.
+  /// Only used when [isScrollable] is true.
   final ScrollPhysics? physics;
+
+  /// The height of each item in the list.
+  /// Only used when [isScrollable] is true.
   final double? itemExtent;
+
+  /// Whether the extent of the scroll view in the scroll direction should be
+  /// determined by the contents being viewed.
+  /// Only used when [isScrollable] is true.
   final bool shrinkWrap;
+
+  /// Whether to show a "Select All" option at the top of the list.
+  /// Defaults to false.
   final bool showSelectAll;
+
+  /// The text to display for the "Select All" option.
+  /// Only used when [showSelectAll] is true.
+  /// Defaults to 'Select All'.
   final String selectAllText;
 
+  /// Creates a new [MultiSelectChecklist].
+  ///
+  /// The [items] and [onChanged] parameters are required.
+  ///
+  /// By default, the checklist uses the theme's primary color for the active state
+  /// and displays items in a non-scrollable column. The control is placed at the
+  /// leading edge of each item.
   const MultiSelectChecklist({
     Key? key,
     required this.items,
